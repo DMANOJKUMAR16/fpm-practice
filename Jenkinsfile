@@ -23,12 +23,15 @@ cp hello.jar package/usr/local/bin/
 '''
 }}
 stage('Build DEB using FPM') {
-steps {
-sh '''
-fpm -s dir -t deb -n hello-java -v
-1.0.${BUILD_NUMBER} --prefix=/ -C package
-'''
-}
+    steps {
+        sh '''
+        fpm -s dir -t deb \
+        -n hello-java \
+        -v 1.0 \
+        -C package \
+        .
+        '''
+    }
 }
 }
 post {
